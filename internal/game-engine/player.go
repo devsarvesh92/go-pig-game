@@ -22,3 +22,7 @@ func (p *Player) AddScore(score int) {
 func (p *Player) ContinuePlaying(runningScore int) bool {
 	return p.holdScore > runningScore
 }
+
+func (p *Player) ResetScore() {
+	p.score = 0
+}
