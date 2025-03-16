@@ -22,6 +22,11 @@ func (g Game) Play() []PlayerWiseStats {
 
 		for j := range g.players {
 			player := &g.players[j]
+			player.ResetScore()
+		}
+
+		for j := range g.players {
+			player := &g.players[j]
 
 			runningScore := 0
 			for {
@@ -46,9 +51,7 @@ func (g Game) Play() []PlayerWiseStats {
 		}
 	}
 
-	// Build Playerwise stats
 	playerWiseStats := make([]PlayerWiseStats, 0, len(g.players))
-
 	for p := range g.players {
 		player := &g.players[p]
 		playerWiseStats = append(playerWiseStats, PlayerWiseStats{
