@@ -26,7 +26,7 @@ func TestPlayer_Play(t *testing.T) {
 	}}
 
 	player := Player{
-		name: "Abc",
+		Name: "Abc",
 	}
 
 	for _, testCase := range testCases {
@@ -39,7 +39,7 @@ func TestPlayer_Play(t *testing.T) {
 
 func TestPlayer_AddWins(t *testing.T) {
 	player := Player{
-		name: "Abc",
+		Name: "Abc",
 	}
 
 	if player.wins != 0 {
@@ -55,7 +55,7 @@ func TestPlayer_AddWins(t *testing.T) {
 
 func TestPlayer_AddScore(t *testing.T) {
 	player := Player{
-		name: "Abc",
+		Name: "Abc",
 	}
 
 	if player.score != 0 {
@@ -71,8 +71,8 @@ func TestPlayer_AddScore(t *testing.T) {
 
 func TestPlayer_ContinuePlayer(t *testing.T) {
 	player := Player{
-		name:      "Abc",
-		holdScore: 20,
+		Name:      "Abc",
+		HoldScore: 20,
 	}
 
 	if player.ContinuePlaying(30) != false {

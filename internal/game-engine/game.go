@@ -1,65 +1,67 @@
 package gameengine
 
 type Game struct {
-	numberOfGames int
-	gameOverScore int
-	players       []Player
-	diceRoller    DiceRoller
-	winningScore  int
+	NumberOfGames int
+	GameOverScore int
+	Players       []Player
+	DiceRoller    DiceRoller
+	WinningScore  int
 }
 
 type PlayerWiseStats struct {
-	name         string
-	wins         int
-	losses       int
-	score        int
-	holdingScore int
+	Name         string
+	Wins         int
+	Losses       int
+	HoldingScore int
 }
 
 func (g Game) Play() []PlayerWiseStats {
 
-	for i := 1; i <= g.numberOfGames; i++ {
-
-		for j := range g.players {
-			player := &g.players[j]
+	for i := 1; i <= g.NumberOfGames; i++ {
+		gameOver := false
+		for j := range g.Players {
+			player := &g.Players[j]
 			player.ResetScore()
 		}
 
-		for j := range g.players {
-			player := &g.players[j]
+		for !gameOver {
+			for j := range g.Players {
+				player := &g.Players[j]
 
-			runningScore := 0
-			for {
-				diceVal := player.Play(g.diceRoller)
-				if diceVal == g.gameOverScore {
+				runningScore := 0
+				for {
+					diceVal := player.Play(g.DiceRoller)
+					if diceVal == g.GameOverScore {
+						break
+					}
+					runningScore += diceVal
+
+					if !player.ContinuePlaying(runningScore) {
+						// Add score
+						player.AddScore(runningScore)
+						break
+					}
+				}
+
+				// Check if player is winner already
+				if player.score >= g.WinningScore {
+					player.AddWins()
+					gameOver = true
 					break
 				}
-				runningScore += diceVal
-
-				if !player.ContinuePlaying(runningScore) {
-					// Add score
-					player.AddScore(runningScore)
-					break
-				}
-			}
-
-			// Check if player is winner already
-			if player.score >= g.winningScore {
-				player.AddWins()
-				break
 			}
 		}
+
 	}
 
-	playerWiseStats := make([]PlayerWiseStats, 0, len(g.players))
-	for p := range g.players {
-		player := &g.players[p]
+	playerWiseStats := make([]PlayerWiseStats, 0, len(g.Players))
+	for p := range g.Players {
+		player := &g.Players[p]
 		playerWiseStats = append(playerWiseStats, PlayerWiseStats{
-			name:         player.name,
-			wins:         player.wins,
-			losses:       g.numberOfGames - player.wins,
-			score:        player.score,
-			holdingScore: player.holdScore,
+			Name:         player.Name,
+			Wins:         player.wins,
+			Losses:       g.NumberOfGames - player.wins,
+			HoldingScore: player.HoldScore,
 		})
 	}
 	return playerWiseStats

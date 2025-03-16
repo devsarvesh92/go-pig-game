@@ -1,9 +1,9 @@
 package gameengine
 
 type Player struct {
-	name      string
+	Name      string
+	HoldScore int
 	score     int
-	holdScore int
 	wins      int
 }
 
@@ -20,7 +20,7 @@ func (p *Player) AddScore(score int) {
 }
 
 func (p *Player) ContinuePlaying(runningScore int) bool {
-	return p.holdScore > runningScore
+	return p.HoldScore > runningScore
 }
 
 func (p *Player) ResetScore() {

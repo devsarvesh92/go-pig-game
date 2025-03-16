@@ -3,7 +3,7 @@ package gameengine
 import "testing"
 
 func TestRoll(t *testing.T) {
-	dice := Dice{sides: 6}
+	dice := Dice{Sides: 6}
 	result := dice.Roll()
 
 	if result > 6 || result < 1 {

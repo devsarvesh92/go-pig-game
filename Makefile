@@ -16,3 +16,6 @@ test-coverage:
 test-coverage-html:
 	go test -coverprofile=coverage.out ./...
 	go tool cover -html=coverage.out
+
+build:
+	go build -o pig cmd/main.go

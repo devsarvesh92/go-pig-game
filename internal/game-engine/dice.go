@@ -7,9 +7,9 @@ type DiceRoller interface {
 }
 
 type Dice struct {
-	sides int
+	Sides int
 }
 
 func (d Dice) Roll() int {
-	return rand.Intn(d.sides) + 1
+	return rand.Intn(d.Sides) + 1
 }

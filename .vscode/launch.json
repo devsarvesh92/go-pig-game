@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Pig Game",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/main.go", // Adjust this path to where your main.go is
+            "args": ["10", "15"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch Current File",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${fileDirname}",
+            "args": []
+        }
+    ]
+}
