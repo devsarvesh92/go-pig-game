@@ -50,3 +50,4 @@ __debug_*
 
 # Binary files that don't have extensions
 /bin/
+.vscode
